@@ -1,0 +1,22 @@
+#android
+proj.android/bin/
+proj.android/obj/
+proj.android/libs/
+
+#vs index file
+*.sdf
+
+.o
+.obj
+.lib
+.pdb
+
+
+#win32
+proj.win32/Debug.win32/
+
+#wp8
+proj.wp8/WP8/
+
+#wp8-xaml
+
