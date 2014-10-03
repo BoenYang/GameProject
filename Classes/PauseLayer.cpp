@@ -13,6 +13,7 @@ USING_NS_CC;
 bool PauseLayer::init()
 {
 	CCLayerColor::initWithColor(ccc4(0, 0, 0, 100));
+	setKeypadEnabled(true);
 	setTouchEnabled(true);
 	backgroundMusicPaused = false;
 	addGameControlButtons();
@@ -69,7 +70,7 @@ void PauseLayer::continueButtonCallback(cocos2d::CCObject* sender)
 	if (RunTimeData::getInstance()->hasMusic){
 		SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 	}
-	getParent()->scheduleUpdate();
+	getParent()->schedule(schedule_selector(GameScene::update));
 }
 
 void PauseLayer::levelSelectButtonCallback(cocos2d::CCObject* sender)
@@ -125,4 +126,14 @@ void PauseLayer::soundButtonCallback(cocos2d::CCObject* sender)
 	}
 	
 	LocalData::writeRuntimeDataToLocal();
+}
+
+void PauseLayer::keyBackClicked(void)
+{
+	CCLOG("resunm click");
+	if (RunTimeData::getInstance()->hasMusic){
+		SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+	}
+	getParent()->schedule(schedule_selector(GameScene::update));
+	//getParent()->scheduleUpdate();
 }

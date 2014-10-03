@@ -31,6 +31,8 @@ public:
 
 	void soundButtonCallback(cocos2d::CCObject* sender);
 
+	virtual void keyBackClicked(void);
+
 	bool backgroundMusicPaused;
 };
 

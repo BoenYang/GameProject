@@ -36,6 +36,7 @@ bool HelloWorld::init()
 	logo->runAction(CCSequence::create(fadeOut,CCCallFunc::create(this,callfunc_selector(HelloWorld::logoFadeOutCallback)),NULL));
 	this->addChild(logo);
 	logo->setScale(1.5f);
+	loadAudio();
 	LocalData::readLocalDataToRunTime();
 	CCLOG("win height %f win width %f", CCDirector::sharedDirector()->getWinSize().height, CCDirector::sharedDirector()->getWinSize().width);
     return true;

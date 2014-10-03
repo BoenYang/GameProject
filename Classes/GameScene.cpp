@@ -64,7 +64,9 @@ bool GameScene::init()
 	
 	LocalData::writeRuntimeDataToLocal();
 	playBackgroundMusic();
-	this->scheduleUpdate();
+
+	this->schedule(schedule_selector(GameScene::update));
+	//this->scheduleUpdate();
 	CCString* str = CCString::createWithFormat("level/level%d.xml", RunTimeData::getInstance()->selectLevel);
 	loadLevelFromFile(str->getCString());
 	if (RunTimeData::getInstance()->isFirstTime){
@@ -768,7 +770,7 @@ void GameScene::toolButtonCallBack(CCObject* sender)
 
 void GameScene::pauseButtonCallback(cocos2d::CCObject* sender)
 {
-	if (!isShowResult){
+	if (!isShowResult && !isPausing){
 		CCMenuItemImage* pause = (CCMenuItemImage*)sender;
 		isPausing = true;
 		//pause game
@@ -779,7 +781,8 @@ void GameScene::pauseButtonCallback(cocos2d::CCObject* sender)
 		PauseLayer* layer = PauseLayer::create();
 		layer->setTag(100);
 		this->addChild(layer, 3);
-		this->unscheduleUpdate();
+		this->unschedule(schedule_selector(GameScene::update));
+		//this->unscheduleUpdate();
 	}
 }
 
@@ -850,7 +853,8 @@ void GameScene::guideLogic()
 {
 	GuideLayer* guideLayer = GuideLayer::create();
 	this->addChild(guideLayer, 3);
-	this->unscheduleUpdate();
+	this->unschedule(schedule_selector(GameScene::update));
+	//this->unscheduleUpdate();
 }
 
 void GameScene::winSchedule(float dt)
@@ -868,7 +872,9 @@ void GameScene::winSchedule(float dt)
 
 	ResultLayer* result = ResultLayer::create();
 	this->addChild(result, 3);
-	this->unscheduleUpdate();
+
+	this->unschedule(schedule_selector(GameScene::update));
+	//this->unscheduleUpdate();
 }
 
 GameScene::~GameScene()
@@ -887,7 +893,8 @@ GameScene::~GameScene()
 
 void GameScene::resetLevelSchedule(float dt)
 {
-	this->unscheduleUpdate();
+	this->unschedule(schedule_selector(GameScene::update));
+	//this->unscheduleUpdate();
 	CCScene* gameScene = GameScene::scene();
 	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.4f, gameScene));
 }
@@ -906,5 +913,18 @@ bool GameScene::isOutOfScreen(b2Body* body)
 
 void GameScene::keyBackClicked(void)
 {
-
+	CCLOG("back click");
+	if (!isShowResult && !isPausing){
+		isPausing = true;
+		//pause game
+		if (SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
+		{
+			SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+		}
+		PauseLayer* layer = PauseLayer::create();
+		layer->setTag(100);
+		this->addChild(layer, 3);
+		this->unschedule(schedule_selector(GameScene::update));
+		//this->unscheduleUpdate();
+	}
 }

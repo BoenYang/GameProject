@@ -30,6 +30,7 @@ bool LevelSelectScene::init()
 	CCLayer::init();
 	currentPackage = 1;
 	RunTimeData::getInstance()->selectPackage = currentPackage;
+	setKeypadEnabled(true);
 	setTouchEnabled(true);
 	addBackground();
 	addLevelButton();
@@ -331,4 +332,11 @@ void LevelSelectScene::shopButtonCallback(cocos2d::CCObject* sender)
 	}
 	CCScene* shopScene = ShopScene::scene();
 	CCDirector::sharedDirector()->pushScene(CCTransitionFade::create(0.5f, shopScene));
+}
+
+void LevelSelectScene::keyBackClicked(void)
+{
+	CCLOG("back");
+	CCScene* scene = MenuScene::scene();
+	CCDirector::sharedDirector()->pushScene(CCTransitionFade::create(0.5f, scene)); 
 }

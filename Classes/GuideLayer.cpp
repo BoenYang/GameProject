@@ -42,7 +42,7 @@ void GuideLayer::getItButton(CCObject* sender)
 	}
 	RunTimeData::getInstance()->isFirstTime = false;
 	LocalData::writeRuntimeDataToLocal();
-	getParent()->scheduleUpdate();
+	getParent()->schedule(schedule_selector(GameScene::update));
 	this->removeFromParentAndCleanup(true);
 	
 }

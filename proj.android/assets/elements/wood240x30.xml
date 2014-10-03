@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"> 
+<plist version="1.0">
+    <dict>
+		<key>VertexCoordinate</key>
+		<array>
+			<string>{8,113}</string>
+			<string>{248,113}</string>
+			<string>{248,143}</string>
+			<string>{8,143}</string>
+		</array>
+    </dict> 
+</plist>

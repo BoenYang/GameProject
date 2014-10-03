@@ -23,6 +23,8 @@ public:
 	bool isPausing;
 
 	virtual void keyBackClicked(void);
+
+	void update(float delta);
 private:
 
 	void addGameControlButton();
@@ -56,8 +58,6 @@ private:
 	virtual void ccTouchCancelled(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
 
 	virtual void registerWithTouchDispatcher(void);
-
-	virtual void update(float delta);
 
 	void addNewSpriteAtPosition(cocos2d::CCPoint p);
 

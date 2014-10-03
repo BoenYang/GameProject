@@ -16,6 +16,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     AppDelegate app;
     CCEGLView* eglView = CCEGLView::sharedOpenGLView();
     eglView->setViewName("GameProject");
-    eglView->setFrameSize(480, 320);
+    eglView->setFrameSize(720, 1280);
+	eglView->setFrameZoomFactor(0.5);
     return CCApplication::sharedApplication()->run();
 }

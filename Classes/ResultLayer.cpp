@@ -13,6 +13,7 @@ using namespace CocosDenshion;
 bool ResultLayer::init()
 {
 	CCLayerColor::initWithColor(ccc4(0, 0, 0, 100));
+	setKeypadEnabled(true);
 	setTouchEnabled(true);
 	addGameControlButton();
 	addScore();
@@ -24,9 +25,9 @@ bool ResultLayer::init()
 
 void ResultLayer::addGameControlButton()
 {
-	CCMenuItemImage* levelSelect = CCMenuItemImage::create("button/home_menu_normal.png", "home_menu_pressed.png", this, menu_selector(ResultLayer::menuButtonCallback));
-	CCMenuItemImage* reset = CCMenuItemImage::create("button/home_restart_normal.png", "home_restart_pressed.png", this, menu_selector(ResultLayer::resetButtonCallback));
-	CCMenuItemImage* next = CCMenuItemImage::create("button/home_next_normal.png", "home_next_pressed.png", this, menu_selector(ResultLayer::nextButtonCallback));
+	CCMenuItemImage* levelSelect = CCMenuItemImage::create("button/home_menu_normal.png", "button/home_menu_pressed.png", this, menu_selector(ResultLayer::menuButtonCallback));
+	CCMenuItemImage* reset = CCMenuItemImage::create("button/home_restart_normal.png", "button/home_restart_pressed.png", this, menu_selector(ResultLayer::resetButtonCallback));
+	CCMenuItemImage* next = CCMenuItemImage::create("button/home_next_normal.png", "button/home_next_pressed.png", this, menu_selector(ResultLayer::nextButtonCallback));
 	CCMenu* menu = CCMenu::create(levelSelect, reset, next, NULL);
 	menu->setAnchorPoint(CCPointZero);
 	menu->setPosition(CCPointZero);

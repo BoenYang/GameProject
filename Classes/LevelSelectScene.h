@@ -45,6 +45,8 @@ private:
 
 	void shopButtonCallback(cocos2d::CCObject* sender);
 
+	virtual void keyBackClicked(void);
+
 private:
 
 	int currentPackage;
